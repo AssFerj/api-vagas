@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
 import { UserType } from "./user-type.model";
+import { UserEntity } from "../shared/database/entities/user.entity";
 
 export class User {
     private _id: string;
@@ -46,5 +47,13 @@ export class User {
             type: this._type,
             enterpriseName: this._enterpriseName,
         };
+    }
+
+    public static create(userEntity: UserEntity) {
+        const user = new User(userEntity.name, userEntity.email, userEntity.password, userEntity.type, userEntity.enterpriseName);
+
+        user._id = userEntity.id;
+
+        return user;
     }
 }
