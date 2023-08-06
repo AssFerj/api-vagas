@@ -1,4 +1,4 @@
-import { Result, Usecase } from "../../shared/util";
+import { Usecase, Result } from "../../../shared/util";
 import { JobApplicationRepository } from "../repositories/job-application.repository";
 
 export class ListJobsApplication implements Usecase {

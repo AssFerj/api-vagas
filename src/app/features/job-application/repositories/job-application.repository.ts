@@ -1,8 +1,8 @@
-import { Database } from "../../../main/database/database.connection";
-import { JobRepository } from "../../features/job/repositories/job.repository";
-import { UserRepository } from "../../features/user/repositories/user.repository";
-import { JobApplication } from "../../models/job-application.model";
-import { JobApplicationEntity } from "../../shared/database/entities/job-application.entity";
+import { Database } from "../../../../main/database/database.connection";
+import { JobApplication } from "../../../models/job-application.model";
+import { JobApplicationEntity } from "../../../shared/database/entities/job-application.entity";
+import { JobRepository } from "../../job/repositories/job.repository";
+import { UserRepository } from "../../user/repositories/user.repository";
 
 
 export class JobApplicationRepository {

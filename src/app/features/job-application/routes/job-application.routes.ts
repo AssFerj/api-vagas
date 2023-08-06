@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { JobApplicationController } from "../controllers/job-application.controller";
-import { LoginValidator } from "../../features/user/validators/login.validators";
-import { CandidateValidator } from "../../features/candidate/validators/candidate.validator";
+import { CandidateValidator } from "../../candidate/validators/candidate.validator";
+import { LoginValidator } from "../../user/validators/login.validators";
 
 export const jobApplicationRoutes = () => {
   const app = Router({

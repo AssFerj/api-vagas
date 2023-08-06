@@ -1,8 +1,7 @@
-
-import { JobRepository } from "../../features/job/repositories/job.repository";
-import { UserRepository } from "../../features/user/repositories/user.repository";
-import { JobApplication } from "../../models/job-application.model";
-import { Usecase, Result, UsecaseResponse } from "../../shared/util";
+import { JobApplication } from "../../../models/job-application.model";
+import { Usecase, Result, UsecaseResponse } from "../../../shared/util";
+import { JobRepository } from "../../job/repositories/job.repository";
+import { UserRepository } from "../../user/repositories/user.repository";
 import { JobApplicationRepository } from "../repositories/job-application.repository";
 
 interface CreateJobApplicationParams {
