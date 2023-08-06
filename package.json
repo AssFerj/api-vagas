@@ -12,9 +12,9 @@
         "build": "tsc",
         "typeorm": "typeorm-ts-node-commonjs",
         "typeorm:create": "typeorm migration:create",
-        "typeorm:run": "npm run typeorm migration:run -- -d ./src/database/config/database.config.ts",
-        "typeorm:revert": "npm run typeorm migration:revert -- -d ./src/database/config/database.config.ts",
-        "typeorm:generate": "npm run typeorm migration:generate -- -d ./src/database/config/database.config.ts"
+        "typeorm:run": "typeorm-ts-node-commonjs migration:run -d ./src/main/config/database.config.ts",
+        "typeorm:revert": "typeorm-ts-node-esm migration:revert -- -d ./src/main/config/database.config.ts",
+        "typeorm:generate": "typeorm-ts-node-esm migration:generate -d ./src/main/config/database.config.ts src/app/shared/database/migrations/CreateTables"
     },
     "keywords": [],
     "author": "",
