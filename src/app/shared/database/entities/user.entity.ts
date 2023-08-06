@@ -1,10 +1,13 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { EUserType, UserType } from "../../../models/user-type.model";
 import { JobApplicationEntity } from "./job-application.entity";
+import { JobEntity } from "./job.entity";
 
 @Entity('users')
 export class UserEntity {
-    @PrimaryColumn()
+    @PrimaryColumn({
+        type: 'uuid'
+    })
     id: string;
 
     @Column()
@@ -37,6 +40,9 @@ export class UserEntity {
         name: 'updated_at'
     })
     updatedAt: Date;
+
+    @OneToMany(()=>JobEntity, (entity)=>entity.recruiter)
+    job: JobEntity[];
 
     @OneToMany(()=>JobApplicationEntity, (entity)=>entity.candidate)
     jobApplication: JobApplicationEntity

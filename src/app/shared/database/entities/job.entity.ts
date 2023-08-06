@@ -1,9 +1,12 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { JobApplicationEntity } from "./job-application.entity";
+import { UserEntity } from "./user.entity";
 
 @Entity('jobs')
 export class JobEntity {
-    @PrimaryColumn()
+    @PrimaryColumn({
+        type: 'uuid'
+    })
     id: string;
 
     @Column()
@@ -22,7 +25,8 @@ export class JobEntity {
     isActive: boolean;
 
     @Column({
-        name: 'id_recruiter'
+        name: 'id_recruiter',
+        type: 'uuid'
     })
     idRecruiter: string;
 
@@ -42,6 +46,14 @@ export class JobEntity {
     })
     updatedAt: Date;
 
+    @ManyToOne(()=>UserEntity, (entity)=>entity.job)
+    @JoinColumn({
+        name: 'id_recruiter',
+        referencedColumnName: 'id'
+    })
+    recruiter: UserEntity;
+
     @OneToMany(()=>JobApplicationEntity, (entity)=>entity.job)
     jobApplication: JobApplicationEntity[];
 }
+    

@@ -5,12 +5,14 @@ import { JobEntity } from "./job.entity";
 @Entity('jobs_applications')
 export class JobApplicationEntity {
     @PrimaryColumn({
-        name: 'id_candidate'
+        name: 'id_candidate',
+        type: 'uuid'
     })
     idCandidate: string;
 
     @PrimaryColumn({
-        name: 'id_job'
+        name: 'id_job',
+        type: 'uuid'
     })
     idJob: string;
 

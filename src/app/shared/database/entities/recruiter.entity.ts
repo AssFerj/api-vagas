@@ -3,7 +3,9 @@ import { EUserType, UserType } from "../../../models/user-type.model";
 
 @Entity('recruiters')
 export class RecruiterEntity {
-    @PrimaryColumn()
+    @PrimaryColumn({
+        type: 'uuid'
+    })
     id: string;
 
     @Column()
