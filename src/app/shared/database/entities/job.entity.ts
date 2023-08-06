@@ -13,7 +13,7 @@ export class JobEntity {
     description: string;
 
     @Column()
-    enterpriseN: string;
+    enterprise: string;
 
     @Column({
         name: 'limit_date'
