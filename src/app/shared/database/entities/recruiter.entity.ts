@@ -18,6 +18,7 @@ export class RecruiterEntity {
     password: string;
 
     @Column({
+        type: 'varchar',
         length: 1,
         enum: EUserType
     })
