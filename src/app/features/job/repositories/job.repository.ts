@@ -53,6 +53,20 @@ export class JobRepository {
     };
   }
 
+  public async list(idRecruiter: string): Promise<any> {
+    const result = await this.repository.find({
+      where: {
+        idRecruiter
+      },
+      relations: {
+        recruiter: true,
+        jobApplication: { candidate: true },
+      },
+    })
+
+    return result.map((job)=>JobRepository.mapRowToModelCandidates(job))
+  }
+
   public static mapRowToModel(job?: JobEntity | null) {
     if (!job) {
       return undefined;
