@@ -1,5 +1,6 @@
 import { UserType } from "../../../models/user-type.model";
 import { User } from "../../../models/user.model";
+import { CacheRepository } from "../../../shared/database/repository/cache.repository";
 import { Result, Usecase } from "../../../shared/util";
 import { UserRepository } from "../../user/repositories/user.repository";
 
@@ -12,6 +13,7 @@ interface CreateCandidateParams {
 export class CreateCandidateUsecase implements Usecase {
   public async execute(params: CreateCandidateParams): Promise<Result> {
     const repository = new UserRepository();
+    const cacheRepository = new CacheRepository();
     const user = await repository.getByEmail(params.email);
 
     if (user) {
@@ -30,6 +32,7 @@ export class CreateCandidateUsecase implements Usecase {
     );
 
     await repository.create(candidate);
+    await cacheRepository.delete('candidate');
 
     return {
       ok: true,
