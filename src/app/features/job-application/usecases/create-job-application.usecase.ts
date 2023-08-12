@@ -1,4 +1,5 @@
 import { JobApplication } from "../../../models/job-application.model";
+import { CacheRepository } from "../../../shared/database/repository/cache.repository";
 import { Usecase, Result, UsecaseResponse } from "../../../shared/util";
 import { JobRepository } from "../../job/repositories/job.repository";
 import { UserRepository } from "../../user/repositories/user.repository";
@@ -13,6 +14,7 @@ export class CreateJobApplicationUsecase implements Usecase {
   public async execute(params: CreateJobApplicationParams): Promise<Result> {
 
     const repository = new UserRepository();
+    const cacheRepository = new CacheRepository();
     const user = await repository.getById(params.idCandidate);
     if (!user) {
       return UsecaseResponse.notFound("User");
@@ -55,6 +57,7 @@ export class CreateJobApplicationUsecase implements Usecase {
     }
 
     const jobApplication = new JobApplication(user, job, new Date());
+    await cacheRepository.delete('jobApplication');
     await jobApplicationRepository.create(jobApplication);
 
     return UsecaseResponse.success(
