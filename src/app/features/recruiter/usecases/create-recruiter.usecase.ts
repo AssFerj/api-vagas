@@ -1,4 +1,5 @@
 import { Recruiter } from "../../../models/recruiter.model";
+import { CacheRepository } from "../../../shared/database/repository/cache.repository";
 import { Result, Usecase } from "../../../shared/util";
 import { UserRepository } from "../../user/repositories/user.repository";
 
@@ -13,6 +14,7 @@ export class CreateRecruiterUsecase implements Usecase {
   public async execute(params: CreateRecruiterParams): Promise<Result> {
 
     const repository = new UserRepository();
+    const cachRepository = new CacheRepository();
     const user = await repository.getByEmail(params.email);
 
     if (user) {
@@ -29,6 +31,7 @@ export class CreateRecruiterUsecase implements Usecase {
       params.password,
       params.enterpriseName
     );
+    await cachRepository.delete('users');
     await repository.create(recruiter);
 
     return {
