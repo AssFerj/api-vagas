@@ -12,10 +12,10 @@ export class JobRepository {
       id: job.id,
       description: job.description,
       enterprise: job.enterprise,
-      limitDate: job.limitDate,
+      limiteDate: job.limitDate,
       isActive: job.isActive,
-      idRecuiter: job.recruiter.id,
-      maxCandidates: job.maxCandidates,
+      idRecruiter: job.recruiter.id,
+      maxCandidate: job.maxCandidates,
     });
 
     await this.repository.save(entity);
